@@ -15,7 +15,7 @@ Monte Carlo simulation what the likelihood of each hand is and how likely a hand
 </p>
 
 There are a few interesting things to note. First of all we see that the **Double Run** is the least likely hand but is actually not the highest ranked.
-Also compared to traditional poker we have the **Run** outranking **Colour** traditonal 5 card poker has the **Flush** outrank the **Straight**. This is actually due to the chances of getting the same suit being smaller than getting the 3 sequential cards.
+Also compared to traditional poker we have the **Run** outranking **Colour** traditional 5 card poker has the **Flush** outrank the **Straight**. This is actually due to the chances of getting the same suit being smaller than getting the 3 sequential cards.
 
 ## Calculation of probabilities
 
