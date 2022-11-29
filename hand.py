@@ -115,25 +115,14 @@ class Hand:
         return self.get_hand_rank() > other.get_hand_rank()
 
 
-def sim_hand_probability():
+def sim_hand_probability(max_sims):
     hands = []
-    # for i in range(1):
-    #     D = Deck()
-    #     D.shuffle_deck()
-    #     H = Hand(D.deal_multiple(3))
-    #     hands.append(H.get_hand_rank())
-    # output_dict = {
-    #     k.name.title().replace("_", " "): v for k, v in Counter(hands).items()
-    # }
-    output_dict = {
-        "Hand Type": ["High Card", "Pair", "Colour", "Run", "Double Run", "Trial"],
-        "Freq": [743404, 169459, 49831, 32837, 2163, 2306],
-    }
-    print("Here")
-    df = pd.DataFrame(output_dict)
-    df["Probability"] = df["Freq"].apply(lambda x: x / df["Freq"].sum())
-    df[["Hand Type", "Probability"]].plot(x="Hand Type", kind="bar")
-    plt.show()
+    for i in range(max_sims):
+        D = Deck()
+        D.shuffle_deck()
+        H = Hand(D.deal_multiple(3))
+        hands.append(H.get_hand_rank())
+    return Counter([i.name.replace("_", " ").title() for i in sorted(hands)])
 
 
 def sim_winning_hand(n_players=2, max_sims=10**6):
@@ -147,7 +136,7 @@ def sim_winning_hand(n_players=2, max_sims=10**6):
 
 
 def plot_winning_hands(max_sims=10**6):
-    fig, ax = plt.subplots(3, 3, figsize=(30, 30))
+    fig, ax = plt.subplots(3, 3, figsize=(20, 20))
     for idx, n_players in enumerate(range(2, 11)):
         y_pos, x_pos = divmod(idx, 3)
         df = pd.DataFrame.from_dict(
@@ -158,10 +147,39 @@ def plot_winning_hands(max_sims=10**6):
             lambda x: x / df["Frequency"].sum()
         )
         ax[y_pos, x_pos].set_title(f"{n_players} Players")
-        df.plot.bar(x="Hand Name", y="Win Probability", ax=ax[y_pos, x_pos])
+        ax[y_pos, x_pos].set_facecolor("#000928")
+        ax[y_pos, x_pos].bar(df["Hand Name"], df["Win Probability"], color="#318181")
+        ax[y_pos, x_pos].bar_label(
+            ax[y_pos, x_pos].containers[0],
+            label_type="edge",
+            color="white",
+        )
         ax[y_pos, x_pos].set_xlabel("")
+        ax[y_pos, x_pos].set_ylim(0, 1)
+        ax[y_pos, x_pos].set_yticklabels(
+            ["{:.2f}".format(x) for x in ax[y_pos, x_pos].get_yticks()]
+        )
+    plt.savefig(r"C:\Users\Cosmic\Pictures\Winning Hand Probability.png")
+
+
+def plot_hand_probability(max_sims):
+    df = pd.DataFrame.from_dict(
+        sim_hand_probability(max_sims), orient="index"
+    ).reset_index()
+    df = df.rename(columns={"index": "Hand Name", 0: "Frequency"})
+    df["Probability"] = df["Frequency"].apply(lambda x: x / df["Frequency"].sum())
+    fig, ax = plt.subplots()
+    ax.set_facecolor("#000928")
+    ax.bar(df["Hand Name"], df["Probability"], color="#318181")
+    ax.set_ylabel("Probability")
+    ax.bar_label(ax.containers[0], label_type="edge", color="white")
+    ax.set_ylim(0, 1)
+    ax.set_yticklabels(["{:.2f}".format(x) for x in ax.get_yticks()])
+    plt.savefig(r"C:\Users\Cosmic\Pictures\Hand Probability.png")
 
 
 if __name__ == "__main__":
-    plot_winning_hands(10**6)
-    plt.savefig(r"C:\Users\Cosmic\Pictures\Fig1.png")
+    plot_hand_probability(10**7)
+    print("Done Simulating Hand Probabilities")
+    plot_winning_hands(10**7)
+    print("Done Simulating Winning Hands")
