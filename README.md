@@ -57,3 +57,5 @@ In a game there are several players, the metric of interest is not what the like
 <p align="center">
   <img src="https://user-images.githubusercontent.com/58432106/204663007-001d409f-6ca8-4df7-a6de-2e99c8b70ae9.png" width="2000"/>
 </p>
+
+With just 2 players getting a the winning hand 55% of the time is a high card. On the other with 10 players we see that a high card is a very unlikely winner. What's really interesting is that a pair seems to maintain its win percentage among the other hands.
