@@ -27,7 +27,7 @@ We have 13 choices for the card value and we choose 3 out of 4 suits. So we get:
 
 ### Double Run
 The valid sequences run are A23, 234, 345, ..., QKA. so the first card is in the range A-Q (the sequence starting with KA2 is not valid) hence there are 12 sequences and they all must be the same suit. So we get:
-<p align="center"> <img src="https://latex.codecogs.com/svg.image?\frac{\binom{12}{1}\cdot&space;4^3&space;-&space;\binom{12}{1}\cdot&space;\binom{4}{1}&space;}{\binom{52}{3}}&space;\approx&space;&space;0.22\%"> </p>
+<p align="center"> <img src="https://latex.codecogs.com/svg.image?\frac{\binom{12}{1}\cdot&space;\binom{4}{1}&space;}{\binom{52}{3}}&space;\approx&space;&space;0.22\%"> </p>
 
 
 ### Run
