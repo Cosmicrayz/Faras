@@ -46,4 +46,14 @@ We have 2 distinct of the 2 values we elect one of them to be the pair while the
 This is just the remaining hands that have not been counted above. So we get:
 <p align="center"> <img src="https://latex.codecogs.com/svg.image?\frac{\binom{52}{3}&space;-&space;\text{Above}}{\binom{52}{3}}&space;\approx&space;&space;74.39\%"> </p>
 
+## Simulation of hands
+We conducted 10^7 iterations of dealing a 3 card hand we have the following resultwhich is indeed in line with the theoretical values
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/58432106/204660844-7580c59a-7692-448d-bf58-bdcc3dd49e74.png"/>
+</p>
 
+## Simulation of winning hands
+In a game there are several players, the metric of interest is not what the likelihood of one particular hand is - rather the likelihood of having a winning hand. As there are more players, the likelihood one player gets dealt a strong hand is quite high which opens the door for more opportunities to bluff. For up to 10 players we simulate dealing 3 cards each and calculate what the winning hand is. We get the following graph
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/58432106/204663007-001d409f-6ca8-4df7-a6de-2e99c8b70ae9.png" width="2000"/>
+</p>
